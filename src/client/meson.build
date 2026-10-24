@@ -18,6 +18,7 @@ menu_resources_vi = gnome.compile_resources(
 
 client_sources = files(
   'tc_client.c',
+  'tc_menu_policy.c',
   'tc_nautilus_ext.c'
 )
 

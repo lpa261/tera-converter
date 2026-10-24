@@ -1,7 +1,7 @@
 project(
   'teraconvert-c',
   'c',
-  version: '2.1.0',
+  version: '2.2.0',
   default_options: [
     'c_std=gnu11',
     'warning_level=2',
@@ -70,6 +70,7 @@ endif
 
 if get_option('ui').allowed() and adw_dep.found() and gtk4_dep.found()
   subdir('src/ui')
+  subdir('src/preview')
 endif
 
 subdir('src/cli')

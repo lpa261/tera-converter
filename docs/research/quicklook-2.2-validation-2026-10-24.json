@@ -1,0 +1,183 @@
+{
+  "version": "2.2.0",
+  "date": "2026-10-24",
+  "normal": {
+    "groups": {
+      "OK": 16,
+      "SKIP": 1
+    },
+    "tests": [
+      {
+        "name": "regression - teraconvert-c:MP4 Padding Safety Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "unit - teraconvert-c:IPC Protocol Tests",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "preview - teraconvert-c:Quick Look Loader Regression",
+        "result": "OK",
+        "subtest_skips": [
+          "ok 4 /preview/image-backend # SKIP Installed Glycin image backend cannot use D-Bus in this environment"
+        ]
+      },
+      {
+        "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Resource Admission Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Owned Temp Recovery Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "teraconvert-c:Worker Pool & Safety Guard Tests",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Media Probe Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Office Worker Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "integration - teraconvert-c:Production IPC Integration",
+        "result": "SKIP",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Validated Remux Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Lossless Audio Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Lossless Image Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Lossless PDF Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Process Runner Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Async Dispatcher Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "engines - teraconvert-c:End-to-End Engine Tests",
+        "result": "OK",
+        "subtest_skips": [
+          "ok 2 /engines/ai-opt-in # SKIP Opt-in AI test: set TC_TEST_AI=1 with a preinstalled model/runtime"
+        ]
+      }
+    ]
+  },
+  "loader_asan_ubsan": {
+    "groups": {
+      "OK": 1
+    },
+    "tests": [
+      {
+        "name": "preview - teraconvert-c:Quick Look Loader Regression",
+        "result": "OK",
+        "subtest_skips": [
+          "ok 4 /preview/image-backend # SKIP Installed Glycin image backend cannot use D-Bus in this environment"
+        ]
+      }
+    ]
+  },
+  "ui_without_pdf": {
+    "groups": {
+      "OK": 8
+    },
+    "tests": [
+      {
+        "name": "regression - teraconvert-c:MP4 Padding Safety Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Owned Temp Recovery Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "preview - teraconvert-c:Quick Look Loader Regression",
+        "result": "OK",
+        "subtest_skips": [
+          "ok 4 /preview/image-backend # SKIP Installed Glycin image backend cannot use D-Bus in this environment"
+        ]
+      },
+      {
+        "name": "unit - teraconvert-c:IPC Protocol Tests",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Resource Admission Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Async Dispatcher Regression",
+        "result": "OK",
+        "subtest_skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Process Runner Regression",
+        "result": "OK",
+        "subtest_skips": []
+      }
+    ]
+  },
+  "package": "/home/panh/Projects/teraconvert-c/packages/teraconvert-c_2.2.0+test.20261024.1_amd64.deb",
+  "package_sha256": "e30b53b10a18b0b6ef84a12a2f4755a4fbd10099e3479cf5823bce8c3ae80866",
+  "package_checks": [
+    "md5 payload verified",
+    "preview binary matches build",
+    "Sushi system service not replaced",
+    "bash syntax passed",
+    "preview CLI help passed",
+    "apt install simulation passed"
+  ],
+  "not_verified": [
+    "Live GTK windows, rendering and keyboard focus",
+    "Real Nautilus Space/selection D-Bus integration",
+    "Image decoding: installed Glycin requires D-Bus, denied by environment",
+    "Audio/video playback and codec compatibility",
+    "Actual system installation and per-user provider enable/disable"
+  ],
+  "asan_options": "detect_leaks=0:abort_on_error=1; external libraries not instrumented",
+  "installed_version_at_check": "2.1.0+test.20261023.1"
+}

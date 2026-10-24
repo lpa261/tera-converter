@@ -4,7 +4,7 @@ set -euo pipefail
 PROJECT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 BUILD_DIR="$PROJECT_DIR/build"
 OUTPUT_DIR="$PROJECT_DIR/packages"
-VERSION="${TC_PACKAGE_VERSION:-2.1.0}"
+VERSION="${TC_PACKAGE_VERSION:-2.2.0}"
 ARCH="$(dpkg --print-architecture)"
 
 dpkg --validate-version "$VERSION"
@@ -45,6 +45,7 @@ SHLIB_OUTPUT="$(cd "$PKG_WORKDIR" && dpkg-shlibdeps -O \
     -e"$PKG_DIR/usr/bin/teraconvert-daemon" \
     -e"$PKG_DIR/usr/bin/teraconvert-ui" \
     -e"$PKG_DIR/usr/bin/teraconvert-cli" \
+    -e"$PKG_DIR/usr/bin/teraconvert-preview" \
     -e"$PKG_DIR$EXTENSION_DIR/libnautilus-teraconvert.so")"
 SHLIB_DEPS="$(sed -n 's/^shlibs:Depends=//p' <<< "$SHLIB_OUTPUT")"
 if [ -z "$SHLIB_DEPS" ]; then
@@ -61,7 +62,7 @@ Architecture: $ARCH
 Installed-Size: $INSTALLED_SIZE
 Maintainer: Phuc Anh Le <lephucanh2601@gmail.com>
 Depends: $SHLIB_DEPS, nautilus, ffmpeg, img2pdf, ghostscript, poppler-utils, zip, unzip, python3, python3-pil, python3-pikepdf
-Recommends: python3-numpy, python3-onnxruntime
+Recommends: python3-numpy, python3-onnxruntime, gstreamer1.0-plugins-good, gstreamer1.0-libav
 Replaces: teraconvert
 Conflicts: teraconvert
 Provides: teraconvert

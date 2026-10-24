@@ -170,3 +170,15 @@ if get_option('daemon') and vips_dep.found() and poppler_dep.found() and archive
     args: [meson.current_source_dir() / 'test_daemon_rpc.py', daemon_bin, cli_bin],
     suite: 'integration', timeout: 90)
 endif
+
+menu_policy_test = executable('test_menu_policy', ['test_menu_policy.c', '../src/client/tc_menu_policy.c'],
+  include_directories: [inc, config_inc, include_directories('../src/client')],
+  dependencies: [glib_dep, gio_dep])
+test('Menu Capability Filtering', menu_policy_test, suite: 'unit')
+if get_option('client') and nautilus_dep.found()
+  native_menu_test = executable('test_menu_native',
+    ['test_menu_native.c', '../src/client/tc_client.c', '../src/client/tc_menu_policy.c', menu_resources_en, menu_resources_vi],
+    include_directories: [inc, config_inc, include_directories('../src/client')],
+    dependencies: [glib_dep, gio_dep, gio_unix_dep, nautilus_dep, libnotify_dep])
+  test('Native Nautilus Menu Filtering', native_menu_test, suite: 'unit')
+endif

@@ -29,7 +29,7 @@
 
 #define TC_APP_ID               "org.gnome.teraconvert"
 #ifndef TC_VERSION
-#define TC_VERSION              "2.1.0"
+#define TC_VERSION              "2.2.0"
 #endif
 #define TC_SOCKET_NAME          "teraconvert.socket"
 #define TC_MEMFD_SEAL_NAME      "tc_bulk_paths"

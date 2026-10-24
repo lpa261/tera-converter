@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-24",
+  "package": "/home/panh/Projects/teraconvert-c/packages/teraconvert-c_2.2.0+test.20261024.2_amd64.deb",
+  "sha256": "c7bb45af0df6602995475f44fdc8073a50467da4b0f5d8c7fca50186a7ae7b95",
+  "payload_and_binary": "verified",
+  "groups": [
+    {
+      "name": "regression - teraconvert-c:MP4 Padding Safety Regression",
+      "result": "OK"
+    },
+    {
+      "name": "unit - teraconvert-c:IPC Protocol Tests",
+      "result": "OK"
+    },
+    {
+      "name": "preview - teraconvert-c:Quick Look Loader Regression",
+      "result": "OK"
+    },
+    {
+      "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+      "result": "OK"
+    },
+    {
+      "name": "regression - teraconvert-c:Resource Admission Regression",
+      "result": "OK"
+    },
+    {
+      "name": "regression - teraconvert-c:Owned Temp Recovery Regression",
+      "result": "OK"
+    },
+    {
+      "name": "teraconvert-c:Worker Pool & Safety Guard Tests",
+      "result": "OK"
+    },
+    {
+      "name": "regression - teraconvert-c:Media Probe Regression",
+      "result": "OK"
+    },
+    {
+      "name": "regression - teraconvert-c:Office Worker Regression",
+      "result": "OK"
+    },
+    {
+      "name": "integration - teraconvert-c:Production IPC Integration",
+      "result": "SKIP"
+    },
+    {
+      "name": "regression - teraconvert-c:Async Dispatcher Regression",
+      "result": "OK"
+    },
+    {
+      "name": "regression - teraconvert-c:Validated Remux Regression",
+      "result": "OK"
+    },
+    {
+      "name": "regression - teraconvert-c:Process Runner Regression",
+      "result": "OK"
+    },
+    {
+      "name": "regression - teraconvert-c:Lossless Image Regression",
+      "result": "OK"
+    },
+    {
+      "name": "regression - teraconvert-c:Lossless Audio Regression",
+      "result": "OK"
+    },
+    {
+      "name": "regression - teraconvert-c:Lossless PDF Regression",
+      "result": "OK"
+    },
+    {
+      "name": "engines - teraconvert-c:End-to-End Engine Tests",
+      "result": "OK"
+    }
+  ],
+  "metadata_tests": "size in UTF-8 bytes, MIME, filename and PDF dimensions/pages passed; image dimensions case skipped because Glycin D-Bus is denied",
+  "sanitizers": "ASan/UBSan loader suite passed, detect_leaks=0, image subtest skipped",
+  "not_verified": "Live GTK layout, media duration and image backend need desktop validation"
+}
