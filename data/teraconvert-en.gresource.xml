@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/gnome/nautilus/menu">
+    <file preprocess="xml-stripblanks" alias="nautilus-files-view-context-menus.ui">nautilus-files-view-context-menus.ui</file>
+  </gresource>
+</gresources>

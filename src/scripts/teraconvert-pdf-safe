@@ -1,0 +1,159 @@
+#!/usr/bin/env python3
+"""Bounded QPDF optimization with semantic-stream, text and page-render checks."""
+import decimal
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+import stat
+import subprocess
+import sys
+import tempfile
+
+class Unsupported(Exception):
+    pass
+
+try:
+    import pikepdf as qpdf
+except ImportError:
+    print('QPDF Python backend is unavailable (install python3-pikepdf).', file=sys.stderr)
+    raise SystemExit(42)
+
+DENIED = {'/AcroForm', '/Annots', '/OpenAction', '/AA', '/JavaScript', '/JS', '/XFA',
+          '/EmbeddedFiles', '/AF', '/Collection', '/OCProperties', '/RichMediaContent',
+          '/DSS', '/Perms', '/ByteRange'}
+GENERAL = {'/FlateDecode', '/LZWDecode', '/ASCII85Decode', '/ASCIIHexDecode', '/RunLengthDecode'}
+OPAQUE = {'/DCTDecode', '/JPXDecode', '/CCITTFaxDecode', '/JBIG2Decode'}
+
+
+def fingerprint(pdf):
+    if pdf.is_encrypted or len(pdf.pages) > 128 or not pdf.pages or len(pdf.objects) > 20000:
+        raise Unsupported('Encrypted PDF, excessive page/object count or empty document.')
+    for obj in pdf.objects:
+        if isinstance(obj, (qpdf.Dictionary, qpdf.Stream)):
+            if DENIED.intersection(obj.keys()) or str(obj.get('/Type')) == '/Sig':
+                raise Unsupported('Forms, signatures, annotations, active or embedded PDF content are unsupported.')
+    seen = {}
+    expanded = 0
+
+    def visit(obj, depth=0):
+        nonlocal expanded
+        if depth > 128:
+            raise Unsupported('PDF object graph exceeds recursion budget.')
+        indirect = isinstance(obj, qpdf.Object) and obj.is_indirect
+        if indirect:
+            key = obj.objgen
+            if key in seen:
+                return ['ref', seen[key]]
+            index = len(seen)
+            seen[key] = index
+        else:
+            index = None
+        if isinstance(obj, qpdf.Stream):
+            filters = obj.get('/Filter')
+            filters = [] if filters is None else list(filters) if isinstance(filters,qpdf.Array) else [filters]
+            filters = [str(f) for f in filters]
+            if any(f not in GENERAL | OPAQUE for f in filters):
+                raise Unsupported('Unknown PDF stream filter.')
+            params = obj.get('/DecodeParms', [])
+            params = list(params) if isinstance(params, qpdf.Array) else [params]
+            params += [None] * max(0, len(filters) - len(params))
+            residual = [[f, visit(params[i], depth + 1)] for i, f in enumerate(filters) if f in OPAQUE]
+            data = obj.read_bytes(qpdf.StreamDecodeLevel.generalized)
+            expanded += len(data)
+            if len(data) > 64 * 1024 * 1024 or expanded > 256 * 1024 * 1024:
+                raise Unsupported('PDF decoded streams exceed validation budget.')
+            fields = [[str(k), visit(obj[k], depth + 1)] for k in sorted(obj.keys())
+                      if k not in {'/Length', '/Filter', '/DecodeParms'}]
+            result = ['stream', fields, residual, hashlib.sha256(data).hexdigest()]
+        elif isinstance(obj, qpdf.Dictionary):
+            result = ['dict', [[str(k), visit(obj[k], depth + 1)] for k in sorted(obj.keys())]]
+        elif isinstance(obj, qpdf.Array):
+            result = ['array', [visit(v, depth + 1) for v in obj]]
+        elif isinstance(obj, qpdf.String):
+            result = ['string', bytes(obj).hex()]
+        elif isinstance(obj, qpdf.Name):
+            result = ['name', str(obj)]
+        elif isinstance(obj, decimal.Decimal):
+            result = ['number', str(obj.normalize())]
+        elif obj is None or isinstance(obj, (bool, int, float, str)):
+            result = obj
+        else:
+            raise Unsupported(f'Unsupported PDF object type: {type(obj).__name__}')
+        return ['object', index, result] if indirect else result
+
+    graph = [visit(pdf.Root), visit(pdf.trailer.get('/Info'))]
+    canonical = json.dumps(graph, ensure_ascii=True, separators=(',', ':')).encode()
+    if len(canonical) > 32 * 1024 * 1024:
+        raise Unsupported('PDF metadata exceeds validation budget.')
+    return hashlib.sha256(canonical).digest()
+
+
+def command(argv):
+    result = subprocess.run(argv, capture_output=True, timeout=90)
+    if result.returncode:
+        raise ValueError(result.stderr.decode(errors='replace')[-2000:])
+    return result.stdout
+
+
+def optimize(source, target):
+    for binary in ['pdftoppm', 'pdftotext']:
+        if not shutil.which(binary):
+            raise Unsupported(f'Missing PDF validator: {binary}')
+    descriptor = os.open(source, os.O_RDONLY | os.O_NONBLOCK | os.O_CLOEXEC)
+    with os.fdopen(descriptor, 'rb') as stream:
+        original = os.fstat(stream.fileno())
+        if not stat.S_ISREG(original.st_mode) or not 0 < original.st_size <= 512 * 1024 * 1024:
+            raise Unsupported('PDF input exceeds 512 MiB limit.')
+        with qpdf.open(stream, attempt_recovery=False, inherit_page_attributes=False) as pdf:
+            before = fingerprint(pdf)
+            if pdf.get_warnings():
+                raise Unsupported('PDF parser reported warnings.')
+            pages, version = len(pdf.pages), pdf.pdf_version
+            flags = os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW | os.O_NONBLOCK
+            fd = os.open(target, flags, 0o600)
+            after = os.fstat(fd)
+            if not stat.S_ISREG(after.st_mode) or after.st_nlink != 1 or (original.st_dev, original.st_ino) == (after.st_dev, after.st_ino):
+                os.close(fd)
+                raise ValueError('Source/destination alias.')
+            os.ftruncate(fd, 0)
+            qpdf.settings.set_flate_compression_level(9)
+            mode = qpdf.ObjectStreamMode.generate if tuple(map(int, version.split('.'))) >= (1, 5) else qpdf.ObjectStreamMode.disable
+            with os.fdopen(fd, 'w+b') as output:
+                pdf.save(output, compress_streams=True, recompress_flate=True,
+                         object_stream_mode=mode, fix_metadata_version=False,
+                         normalize_content=False, preserve_pdfa=True)
+                output.flush()
+                os.fsync(output.fileno())
+    with qpdf.open(target, attempt_recovery=False, inherit_page_attributes=False) as result:
+        if result.pdf_version != version or len(result.pages) != pages or fingerprint(result) != before or result.get_warnings():
+            raise ValueError('PDF semantic object/stream validation failed.')
+    if command(['pdftotext', '-layout', source, '-']) != command(['pdftotext', '-layout', target, '-']):
+        raise ValueError('PDF text changed.')
+    with tempfile.TemporaryDirectory(prefix='tc-pdf-render-', dir=str(Path(target).parent)) as work:
+        for page in range(1, pages + 1):
+            for name, path in [('source', source), ('candidate', target)]:
+                command(['pdftoppm', '-f', str(page), '-l', str(page), '-scale-to', '1600',
+                         '-singlefile', '-png', path, str(Path(work) / name)])
+            a = (Path(work) / 'source.png').read_bytes()
+            b = (Path(work) / 'candidate.png').read_bytes()
+            if a != b:
+                raise ValueError(f'PDF rendered page {page} changed.')
+    now = os.stat(source)
+    if (now.st_dev, now.st_ino, now.st_size, now.st_mtime_ns, now.st_ctime_ns) != (
+            original.st_dev, original.st_ino, original.st_size, original.st_mtime_ns, original.st_ctime_ns):
+        raise ValueError('Source changed during PDF optimization.')
+
+
+if __name__ == '__main__':
+    try:
+        if len(sys.argv) != 3:
+            raise ValueError('Usage: teraconvert-pdf-safe SOURCE CANDIDATE')
+        optimize(sys.argv[1], sys.argv[2])
+    except (Unsupported, qpdf.PasswordError) as error:
+        print(error, file=sys.stderr)
+        raise SystemExit(42)
+    except Exception as error:
+        print(error, file=sys.stderr)
+        raise SystemExit(1)

@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=Quick View
+Name[vi]=Xem nhanh
+Comment=Quick Look file previewer
+Comment[vi]=Xem trước tệp tin kiểu Quick Look
+Icon=org.gnome.NautilusPreviewer
+Exec=/usr/libexec/org.gnome.NautilusPreviewer
+Terminal=false
+NoDisplay=true
+StartupNotify=true
+StartupWMClass=org.gnome.NautilusPreviewer
+X-GNOME-UsesNotifications=true
+Categories=GNOME;GTK;Utility;Core;

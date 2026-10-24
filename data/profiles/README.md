@@ -1,0 +1,1 @@
+These `.conf` files are legacy reference templates. The native daemon does not load or execute them. Active typed policies and planners live under `include/` and `src/engines/`. Changing a template here does not change compression behavior. Legacy bitrate/resize profiles are lossy and carry no fixed quality or savings guarantee.

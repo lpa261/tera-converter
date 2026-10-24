@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "sources": {
+    "bbb": {
+      "title": "Big Buck Bunny",
+      "credit": "Blender Foundation",
+      "license": "CC-BY-3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "source_url": "https://peach.blender.org/about/"
+    },
+    "sintel": {
+      "title": "Sintel",
+      "credit": "Blender Foundation",
+      "license": "CC-BY-3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "source_url": "https://durian.blender.org/sharing/"
+    },
+    "tos": {
+      "title": "Tears of Steel",
+      "credit": "Blender Foundation",
+      "license": "CC-BY-3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "source_url": "https://mango.blender.org/about/"
+    },
+    "sparks": {
+      "title": "Sparks",
+      "credit": "Netflix",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://opencontent.netflix.com/"
+    },
+    "nocturne": {
+      "title": "Nocturne",
+      "credit": "Netflix",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://opencontent.netflix.com/"
+    }
+  },
+  "clips": [
+    {
+      "id": "bbb-01",
+      "source": "bbb",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "bbb-02",
+      "source": "bbb",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "bbb-03",
+      "source": "bbb",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "bbb-04",
+      "source": "bbb",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "bbb-05",
+      "source": "bbb",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "sintel-01",
+      "source": "sintel",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "sintel-02",
+      "source": "sintel",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "sintel-03",
+      "source": "sintel",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "sintel-04",
+      "source": "sintel",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "sintel-05",
+      "source": "sintel",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "tos-01",
+      "source": "tos",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "tos-02",
+      "source": "tos",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "tos-03",
+      "source": "tos",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "tos-04",
+      "source": "tos",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "tos-05",
+      "source": "tos",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "sparks-01",
+      "source": "sparks",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "sparks-02",
+      "source": "sparks",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "sparks-03",
+      "source": "sparks",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "sparks-04",
+      "source": "sparks",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "sparks-05",
+      "source": "sparks",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "nocturne-01",
+      "source": "nocturne",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "nocturne-02",
+      "source": "nocturne",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "nocturne-03",
+      "source": "nocturne",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "nocturne-04",
+      "source": "nocturne",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    },
+    {
+      "id": "nocturne-05",
+      "source": "nocturne",
+      "path": null,
+      "sha256": null,
+      "scene_review": "pending"
+    }
+  ]
+}

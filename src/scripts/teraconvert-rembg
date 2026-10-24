@@ -1,0 +1,292 @@
+#!/usr/bin/env python3
+"""
+TeraConvert Background Remover (teraconvert-rembg)
+Offline image background removal using ONNX Runtime (BRIA RMBG-1.4).
+Outputs PNG with alpha channel.
+"""
+
+import sys
+import os
+import glob
+import hashlib
+import subprocess
+os.environ["OMP_NUM_THREADS"]="2"
+os.environ["OPENBLAS_NUM_THREADS"]="2"
+os.environ["MKL_NUM_THREADS"]="2"
+import numpy as np
+from PIL import Image, ImageOps
+
+# Suppress ONNX runtime verbose warnings and schema duplicate spam
+os.environ["ORT_LOGGING_LEVEL"] = "3"
+
+try:
+    stderr_fd = os.dup(2)
+    devnull = os.open(os.devnull, os.O_WRONLY)
+    os.dup2(devnull, 2)
+    os.close(devnull)
+    import onnxruntime as ort
+except ImportError:
+    ort = None
+finally:
+    try:
+        os.dup2(stderr_fd, 2)
+        os.close(stderr_fd)
+    except Exception:
+        pass
+
+
+def is_vietnamese():
+    for var in ("LANGUAGE", "LC_ALL", "LC_MESSAGES", "LANG"):
+        val = os.environ.get(var)
+        if val:
+            for item in val.split(":"):
+                item = item.split(".")[0].strip().lower()
+                if item.startswith("vi"):
+                    return True
+                if item.startswith("en") or item == "c":
+                    return False
+    return False
+
+
+T = {
+    "vi": {
+        "download_title": "Đang tải mô hình AI tách nền...",
+        "hud_title": "Đang tách nền ảnh...",
+        "model_err_title": "Lỗi Tách Nền",
+        "model_err_msg": "Chưa có model rembg.onnx và tệp .sha256 hợp lệ.",
+        "onnx_err_msg": "Chưa cài đặt python3-onnxruntime trên hệ thống.",
+        "rembg_err_title": "TeraConvert: Lỗi tách nền",
+        "rembg_err_msg": "Không thể xử lý tệp ảnh được chọn.",
+        "process_err_prefix": "Lỗi khi xử lý",
+    },
+    "en": {
+        "download_title": "Downloading AI background removal model...",
+        "hud_title": "Removing background...",
+        "model_err_title": "Background Removal Error",
+        "model_err_msg": "Verified rembg.onnx model and .sha256 receipt not found.",
+        "onnx_err_msg": "python3-onnxruntime is not installed on the system.",
+        "rembg_err_title": "TeraConvert: Background removal error",
+        "rembg_err_msg": "Could not process the selected image(s).",
+        "process_err_prefix": "Error processing",
+    }
+}["vi" if is_vietnamese() else "en"]
+
+
+def find_model_path():
+    local_model = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../data/models/rembg.onnx"))
+    candidates = [
+        os.path.join(os.environ.get("XDG_DATA_HOME",os.path.expanduser("~/.local/share")), "teraconvert/models/rembg.onnx"),
+        local_model,
+        "/usr/share/teraconvert/models/rembg.onnx"
+    ]
+    for path in candidates:
+        if os.path.isfile(path):
+            return os.path.abspath(path)
+    return None
+
+
+def ensure_model_path():
+    import hashlib
+    path = find_model_path()
+    if not path:
+        return None
+    receipt = path + ".sha256"
+    try:
+        with open(receipt, encoding="ascii") as recorded:
+            expected = recorded.read(128).strip().lower()
+        if len(expected) != 64 or any(c not in "0123456789abcdef" for c in expected):
+            return None
+        with open(path, "rb") as model:
+            actual = hashlib.file_digest(model, "sha256").hexdigest()
+        return path if actual == expected else None
+    except (OSError, ValueError):
+        return None
+
+
+def generate_unique_output_path(directory, base_name):
+    candidate = os.path.join(directory, f"{base_name}-nobg.png")
+    if not os.path.exists(candidate):
+        return candidate
+    counter = 1
+    while counter < 100000:
+        candidate = os.path.join(directory, f"{base_name}-nobg ({counter}).png")
+        if not os.path.exists(candidate):
+            return candidate
+        counter += 1
+    return candidate
+
+
+def notify(summary, body, urgency="normal", icon="image-x-generic"):
+    try:
+        subprocess.run(
+            ["notify-send", "-a", "TeraConvert", "-u", urgency, "-i", icon, summary, body],
+            check=False
+        )
+    except Exception:
+        pass
+
+
+def remove_background(image_path, session, input_name, output_name, custom_output=None):
+    with Image.open(image_path) as raw_img:
+        orig_img = ImageOps.exif_transpose(raw_img)
+        orig_w, orig_h = orig_img.size
+
+        # Prepare RGB input (if image already has alpha, composite onto white background first)
+        if orig_img.mode in ("RGBA", "LA") or (orig_img.mode == "P" and "transparency" in orig_img.info):
+            rgba = orig_img.convert("RGBA")
+            rgb_img = Image.new("RGB", rgba.size, (255, 255, 255))
+            rgb_img.paste(rgba, mask=rgba.split()[3])
+        else:
+            rgb_img = orig_img.convert("RGB")
+
+        # Detect model input dimensions dynamically
+        in_shape = session.get_inputs()[0].shape
+        target_h = in_shape[2] if len(in_shape) > 2 and isinstance(in_shape[2], int) else 1024
+        target_w = in_shape[3] if len(in_shape) > 3 and isinstance(in_shape[3], int) else 1024
+
+        resized = rgb_img.resize((target_w, target_h), Image.Resampling.BILINEAR)
+        arr = np.array(resized, dtype=np.float32) / 255.0
+
+        # Normalization (RMBG-1.4 uses [0.5, 0.5, 0.5] / [1.0, 1.0, 1.0]; legacy 320 models use ImageNet)
+        if target_h >= 1024 or target_w >= 1024:
+            mean = np.array([0.5, 0.5, 0.5], dtype=np.float32)
+            std = np.array([1.0, 1.0, 1.0], dtype=np.float32)
+        else:
+            mean = np.array([0.485, 0.456, 0.406], dtype=np.float32)
+            std = np.array([0.229, 0.224, 0.225], dtype=np.float32)
+
+        arr = (arr - mean) / std
+        arr = np.transpose(arr, (2, 0, 1))
+        tensor = np.expand_dims(arr, axis=0)
+
+        # ONNX inference
+        out = session.run([output_name], {input_name: tensor})[0]
+
+        # Normalize mask 0.0 to 1.0
+        mask_arr = np.squeeze(out)
+        ma = np.max(mask_arr)
+        mi = np.min(mask_arr)
+        if ma > mi:
+            mask_norm = (mask_arr - mi) / (ma - mi)
+        else:
+            mask_norm = mask_arr
+        mask_norm = np.clip(mask_norm, 0.0, 1.0)
+
+        # Resize mask to original image dimensions with high-quality filter
+        mask_img = Image.fromarray((mask_norm * 255).astype(np.uint8), mode="L")
+        mask_full = mask_img.resize((orig_w, orig_h), Image.Resampling.BILINEAR)
+
+        # Apply alpha mask
+        final_rgba = orig_img.convert("RGBA")
+        final_rgba.putalpha(mask_full)
+
+        # Determine unique output path
+        if custom_output:
+            output_path = custom_output
+        else:
+            out_dir = os.path.dirname(os.path.abspath(image_path))
+            base_no_ext = os.path.splitext(os.path.basename(image_path))[0]
+            output_path = generate_unique_output_path(out_dir, base_no_ext)
+
+        final_rgba.save(output_path, format="PNG")
+        return output_path
+
+
+def spawn_progress_hud(title=None):
+    if title is None:
+        title = T["hud_title"]
+    candidates = [
+        "/usr/bin/teraconvert-progress",
+        os.path.join(os.path.dirname(__file__), "teraconvert-progress"),
+        os.path.join(os.path.dirname(__file__), "../scripts/teraconvert-progress")
+    ]
+    for c in candidates:
+        if os.path.isfile(c) and os.access(c, os.X_OK):
+            try:
+                return subprocess.Popen(
+                    [c, "--title", title, "--watch-pid", str(os.getpid())],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL
+                )
+            except Exception:
+                pass
+    return None
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="TeraConvert Background Remover")
+    parser.add_argument("-o", "--output", dest="output", default=None, help="Explicit output file path")
+    parser.add_argument("images", nargs="*", help="Input image file(s)")
+    args = parser.parse_args()
+
+    if not args.images:
+        print("Usage: teraconvert-rembg [-o output] <image_file_1> [<image_file_2> ...]", file=sys.stderr)
+        sys.exit(1)
+
+    if ort is None:
+        if not args.output:
+            notify(T["model_err_title"], T["onnx_err_msg"], urgency="critical", icon="dialog-error")
+        else:
+            sys.stderr.write(f"{T['onnx_err_msg']}\n")
+        sys.exit(1)
+
+    model_path = ensure_model_path()
+    if not model_path:
+        if not args.output:
+            notify(T["model_err_title"], T["model_err_msg"], urgency="critical", icon="dialog-error")
+        else:
+            sys.stderr.write(f"{T['model_err_msg']}\n")
+        sys.exit(1)
+
+    # Spawn floating progress HUD only when interactive
+    if not args.output:
+        spawn_progress_hud(T["hud_title"])
+
+    # Setup ONNX session with stderr suppressed to avoid duplicate schema warnings
+    opts = ort.SessionOptions()
+    opts.log_severity_level = 3
+    opts.inter_op_num_threads = 1
+    opts.intra_op_num_threads = max(1,min(2,os.cpu_count() or 1))
+
+    try:
+        stderr_fd = os.dup(2)
+        devnull = os.open(os.devnull, os.O_WRONLY)
+        os.dup2(devnull, 2)
+        os.close(devnull)
+        session = ort.InferenceSession(model_path, sess_options=opts, providers=["CPUExecutionProvider"])
+    finally:
+        try:
+            os.dup2(stderr_fd, 2)
+            os.close(stderr_fd)
+        except Exception:
+            pass
+
+    input_name = session.get_inputs()[0].name
+    output_name = session.get_outputs()[0].name
+
+    success_count = 0
+    first_output = None
+    last_error = None
+
+    for img_path in args.images:
+        if not os.path.isfile(img_path):
+            continue
+        try:
+            out_file = remove_background(img_path, session, input_name, output_name, custom_output=args.output)
+            success_count += 1
+            if not first_output:
+                first_output = out_file
+        except Exception as e:
+            last_error = str(e)
+            sys.stderr.write(f"{T['process_err_prefix']} {img_path}: {e}\n")
+
+    if success_count == 0:
+        err_msg = last_error or T["rembg_err_msg"]
+        if not args.output:
+            notify(T["rembg_err_title"], err_msg, urgency="critical", icon="dialog-error")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,11 @@
+[Unit]
+Description=TeraConvert C11 IPC Activation Socket
+PartOf=teraconvert.service
+
+[Socket]
+ListenStream=%t/teraconvert.socket
+SocketMode=0600
+RemoveOnStop=true
+
+[Install]
+WantedBy=sockets.target

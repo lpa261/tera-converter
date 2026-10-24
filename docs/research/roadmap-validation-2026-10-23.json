@@ -1,0 +1,1095 @@
+{
+  "recorded_at_utc": "2026-10-23T18:18:14.755637+00:00",
+  "source_version": "2.1.0",
+  "source_tree_inventory_sha256": "c206b27e6feb7c3148a0817fd137dc7b9e84dd3fedc76cfd2aaf45d3c2d3e3e6",
+  "source_hashes": {
+    "src/cli/meson.build": "243bbacf4b47d63e13257180e67dc737389cf3c1de3db2a93fd9e9733dc942ba",
+    "src/cli/tc_cli.c": "2823718f64509c94c8a730e81d3caebf39672289499224eaa03e644820ec0b6a",
+    "src/client/meson.build": "25572542f58d2f29e6ca8bb68de936aa77f70d87db824a885d64cbb0c8584472",
+    "src/client/tc_client.c": "9b34e95d1160a5e579aac89a611f585aa5ebe741470711b803c6fa4ba05eaa7f",
+    "src/client/tc_client.h": "c4671ae026aa2a0649bb84d62a0385cf8a59874903412a7c230553ecc924e0b1",
+    "src/client/tc_nautilus_ext.c": "9292a9ba03c874d82a2a75aa8d9f5bb0e09ac90b6d7c736bdc67da826dcd8c97",
+    "src/daemon/meson.build": "da20c2fb801a97bc4b858ebe908f0d3f70eb39c89982fbe68b64b6882961d1ca",
+    "src/daemon/tc_daemon.c": "143778a3d315e93bbd81428db9d9de5e06fcfad2773217d876a078c0540533de",
+    "src/daemon/tc_disk_guard.c": "5c36127aeb029722f81cae5f5e65467346836d87ece373f541eb0b0ef6e36ebf",
+    "src/daemon/tc_disk_guard.h": "aa7df3393a994fc529692ca425b92f23d740fa5dc92729d6a99c61763f1b73a8",
+    "src/daemon/tc_dispatcher.c": "3d83db10b5e177d8dcaccd0583712230f419f35b64bb60b5326164777787465f",
+    "src/daemon/tc_dispatcher.h": "05d57d3ab0f66e121ae3050659b4d511b93872622a85b829feb20a7513f2237e",
+    "src/daemon/tc_governor.c": "cba54c206ac2ea9e06ff66a3fe28eb94ce653e5286e5ea741c5a60994460b118",
+    "src/daemon/tc_governor.h": "c8d23e2dacc8a0e25d71c746d286f16db3a8d934a4bc942ccb5e75456fdc5701",
+    "src/daemon/tc_temp_job.c": "cd870f02b12fd469fec9fad5d9f6b40aa77b84e3d6e24c03017a82a915221f63",
+    "src/daemon/tc_worker_pool.c": "a0169825f1788d891024212f7cd8601120117c29c65124365cfe332ba46470ee",
+    "src/daemon/tc_worker_pool.h": "d405fab0f7c0e1ea70999191e40dedaa3c30b1a1979b7160c9cf1e230cd0f0d3",
+    "src/engines/meson.build": "b9264c355e73898f0f60bb2ac357d3a9152513b2e416d9189b2b268ef447bbd4",
+    "src/engines/tc_ai_rembg.c": "501f5224fac3ff0e06ee2fb0522d0db01ebeb1d3411c45843cfac7f274cfcb7f",
+    "src/engines/tc_audio_preserve.c": "e05a797d62e124faedcd2116f84b85c054b80db549da9f60c8af31a74963091a",
+    "src/engines/tc_doc_poppler.c": "39c9b66cbdb3d1a197103092b37e11aa98be42d1bbd5ca33ae992f8d865da66e",
+    "src/engines/tc_engine.h": "00263e0da4233bfe3dffcc4191eab5b75f3f2ff2fb984633fd9cb9fe86a177c2",
+    "src/engines/tc_engine_registry.c": "3dec3d024c7a718da1c86b2393cede03e485e49863feae07a520aa782ffbe8f8",
+    "src/engines/tc_image_preserve.c": "0685eb1bc6f8d36b806039abb6841d06fa87c26274375e9dabcd5ff3b9de5e1c",
+    "src/engines/tc_img_vips.c": "f74babd841363db8f074d48b902be5b781570f94d095118d708a7dae4ea48357",
+    "src/engines/tc_media_estimate.c": "bc1af476c233015ac4c5f28372c6857687861b16ac0ea1b642340944f3e2da01",
+    "src/engines/tc_media_ffmpeg.c": "40941d84618ec498d3e77ca70523b376f2e57f41b71dead535277d6313b6db6a",
+    "src/engines/tc_media_padding.c": "bcc4dbaed81a9a6d59ef9a2a33d78c1032c023a7eb8151f95526caa4fa141f7e",
+    "src/engines/tc_media_padding.h": "64fc2306a92ab9b4a3cf7fb16f371f82ade0d9f032e7e45c61398cb4ff596e17",
+    "src/engines/tc_media_plan.c": "3e8862afb421d7c030d4b5ece6fb940a8ce7a84db27f74813f17cc9196dd618f",
+    "src/engines/tc_media_plan.h": "b8ca675546d64b0112eef02448a5b3c83d3089f4d751357d8d4bce2f8fe6177b",
+    "src/engines/tc_media_probe.c": "92f371c052a6d2dd75014a6bf5611adb79f66d92bafb7bf870828bbe2d2d06c5",
+    "src/engines/tc_media_probe.h": "827d017b172c45f128cd407b65b3a5f190b99bde8c8e1cc83fbf2c085cb9b46e",
+    "src/engines/tc_media_remux.c": "5a8b2cab612615eeb56ad72404c2bf6c1999ebe102d05ca6d8764eeb77030b50",
+    "src/engines/tc_office_zip.c": "89ec91794f8891f129e1970cfa4691f46198958999d22d903e7f15a993ee10cf",
+    "src/engines/tc_pdf_preserve.c": "56b2fbd31f5c7b4bd19a41930768ee6c037c9e393779a5ea8216bb7b4f6c2a24",
+    "src/engines/tc_process_runner.c": "4c1d0e6d7fe8cb1f63b50c877fd78b16d3f28014df1636f59e1226fcb468cacf",
+    "src/scripts/teraconvert-pdf-safe": "2973f5d2e77f0131ea87cef3bb7dce99a6e2ef158e2409732a03a8e12e730769",
+    "src/scripts/teraconvert-rembg": "bbfefe4d19859f40a047f3fb92dc7a326c74901407f811eb70674ec7220008bf",
+    "src/ui/meson.build": "df6221aa3b8253cb147b48ea8ef27ac1686a0eaf4a1bf410d335326ed7f7b295",
+    "src/ui/tc_ui.h": "736a6d290f2ddb0cc2c726234c3dfdb92482520f8840592338c9192100c9d344",
+    "src/ui/tc_ui_hud.c": "6b8f03b2cc338c24b68c80aeb7b7c3592f19a3c2f75e5bafae069a45ad0330db",
+    "src/ui/tc_ui_main.c": "5103436695117f8e82b51251e2aee39e31e88ce5b712c558987c87eba21bc8c0",
+    "src/ui/tc_ui_resize.c": "2a4968721d0afa1ea7f7e374654c80e96f133432664ea3956098b5e0a7eff7df",
+    "src/ui/tc_ui_setup_ai.c": "4423a9c5c367372e2ae4779695daab32fb40563a31581242987621375c9b6537",
+    "include/tc_common.h": "bab3d8bc7a8d0ae34b9e2bb514f8a9e89708c77a7d946a01fe9797037fea2a05",
+    "include/tc_compression.h": "76f47ea70956f4b47258930276e44ffb12018a968d07a485fa8135844d37e4e9",
+    "include/tc_ipc.h": "c3276c5c59141d8ee4f637f143908ba8ab4f36f3915b351f222122f6e1955040",
+    "include/tc_logging.h": "5a2b133f8ce6b17cc938525d20420dbf6f82b4491748031983739d653348ee4e",
+    "include/tc_process_runner.h": "5cc77423be4589010022e1ee2bae8c1364afb7bde3611ebca7592bd2c3a0e09b",
+    "include/tc_runtime_limits.h": "16825f874a2ac63c98f4cdf898c26a16c16ba2df035a4b6905862fb0afbb68cf",
+    "include/tc_temp_job.h": "5a13d9f4b60121376ad5a3ebd18df70c04be7518ca2c09c4e58230114d395cbe",
+    "tests/meson.build": "fe664022af03c952042ef7aff0171a831ec1ad259aff121b3b2a44f05b315b1e",
+    "tests/test_audio_preserve.c": "6d4e8ac92432753c90684097e27c3f817b0d4c28956f84bfff361a441127cd43",
+    "tests/test_daemon_rpc.py": "8ace4e4b56dc3983e54990d67dfd78e40a150dfe90ad337df8b87c3b8291beb4",
+    "tests/test_dispatcher.c": "a6f97c5bb9d3c3621fbda2d5b5012f3412e817f05c4cdc0cf39571453643a0cb",
+    "tests/test_e2e_conversion.c": "f16fe3ecf0a0c75e34e75392d641229e3dc06a06f013acd6894aa6cd752e2d04",
+    "tests/test_governor.c": "02f0851edc3976fcf2508f7c30159a2c7c529fe5fd325435af2a84208874c8f7",
+    "tests/test_image_preserve.c": "f48a1930663a2767734c472aa5ca1d437a90058c52d1557c63d308f464637c55",
+    "tests/test_ipc.c": "5a121110f4c7d76ea806dd1c52c470bedb63b881e8be991fe5bfd93d38b9c30e",
+    "tests/test_media_padding.c": "e8eb2aaa9953d65511e5c4819fce24a78f78fe5c229708e2db0a8a6d727c6645",
+    "tests/test_media_probe.c": "c88c6ed0ffb87a034bc5837b3ae54a6fdf7e400c0993be2e9bbc516fa10fdcf4",
+    "tests/test_media_remux.c": "84d426cd818596d6c49f58e2424ad42d1eaae267c5d80e7e206b663b6c0a1c47",
+    "tests/test_office_worker.c": "6706a7520901360564e85553d93c850baa7312fe86fb45d8c4cdc90cf14c7604",
+    "tests/test_pdf_preserve.c": "26956ae728ebbac8960cb650081a3b7c3a517773b762091cbeb4d0574ef0d0ca",
+    "tests/test_process_runner.c": "7b809149be8e575bf06d642a7f0aa01db2454b7681c5a55a249e1a453a31a2da",
+    "tests/test_temp_job.c": "99bbae82b932e3c46959df9d934dabbfd5143f0715a8d6aae331e1ac73a49ef5",
+    "tests/test_worker_lifecycle.c": "eb9caabadbb81f524c2a14ef173ace192f8dbf40e96350c5c8bb2c902e228c4b",
+    "tests/test_worker_pool.c": "e24f2f368879c87bc51386f65fc223135ed59264d2835f5f3c592f013d456332",
+    "tools/check-build-matrix.py": "4a54471fd3389e121270a097979e4772a09656a6519b55eddf3cd1dc45475fbe",
+    "tools/install-local.sh": "6234d7504e91a4a77881d8b0c1367d3aa7f2faa6d259e1e139d3e57c5d3b485b",
+    "tools/prepare-functional-test.py": "b4e6da58c70dbd16da6fb217064891e19a1e2439b6695cb03815d91e77c78f16",
+    "tools/quality_benchmark.py": "371299906d00daeac4820739834ebfb79542a794cbecf990920b3671b820c4f7",
+    "tools/register-ai-model.py": "294099c07b946ee2a407d71e89e60b35851a2908e17f652385861b658d0801f5",
+    "tools/research_compression.py": "76cd9a5b447a981d4cbbac8cc9cec8f3f92853bef805153f72d961325ed4e932",
+    "data/applications/org.gnome.NautilusPreviewer.desktop": "4a0cd91cb5da023ec4be67ea3995fc73cfb54784df798a6479146d40640fe7bd",
+    "data/applications/org.gnome.teraconvert.desktop": "2f14c2d9504f6b372292118cb45074abbb0018d35511bc76ee4bbcf286e3e709",
+    "data/applications/quickview.desktop": "4a0cd91cb5da023ec4be67ea3995fc73cfb54784df798a6479146d40640fe7bd",
+    "data/applications/teraconvert.desktop": "d0af7d8c09415dcb3af159d59e6f764f02c47752346bbb8ac74fe933b435d41b",
+    "data/icons/hicolor/128x128/apps/org.gnome.NautilusPreviewer.png": "36ffe1799cb1b6cd73434c5da6e31c50044ddbb21a3d34ff6e900e59d4174fcf",
+    "data/icons/hicolor/128x128/apps/org.gnome.teraconvert.png": "bae1a984e0d972537ded2a6c4d298c2d15baca44a7958fd2b4dc06d69688aaf1",
+    "data/icons/hicolor/128x128/apps/quickview.png": "36ffe1799cb1b6cd73434c5da6e31c50044ddbb21a3d34ff6e900e59d4174fcf",
+    "data/icons/hicolor/128x128/apps/teraconvert.png": "bae1a984e0d972537ded2a6c4d298c2d15baca44a7958fd2b4dc06d69688aaf1",
+    "data/icons/hicolor/16x16/apps/org.gnome.NautilusPreviewer.png": "9817ddafc82ad19ede62750ed78dec5a49a309846f8a0290eef71e9024294893",
+    "data/icons/hicolor/16x16/apps/org.gnome.teraconvert.png": "8381d60d02148b3faf4ba1fec363ce05a1b6571e46393e4f9d4aab73c215ead1",
+    "data/icons/hicolor/16x16/apps/quickview.png": "9817ddafc82ad19ede62750ed78dec5a49a309846f8a0290eef71e9024294893",
+    "data/icons/hicolor/16x16/apps/teraconvert.png": "8381d60d02148b3faf4ba1fec363ce05a1b6571e46393e4f9d4aab73c215ead1",
+    "data/icons/hicolor/24x24/apps/org.gnome.NautilusPreviewer.png": "085ff0699ab8f74a672a57611a93f8722c9212096f2e626412e110b52aa1f910",
+    "data/icons/hicolor/24x24/apps/org.gnome.teraconvert.png": "81cf21042c0a2c15330b79fb484c3b6d1806f5194d0ec5ac8524e26689569a1a",
+    "data/icons/hicolor/24x24/apps/quickview.png": "085ff0699ab8f74a672a57611a93f8722c9212096f2e626412e110b52aa1f910",
+    "data/icons/hicolor/24x24/apps/teraconvert.png": "81cf21042c0a2c15330b79fb484c3b6d1806f5194d0ec5ac8524e26689569a1a",
+    "data/icons/hicolor/256x256/apps/org.gnome.NautilusPreviewer.png": "134b7237182700e4b08a308dda0701ac9cd5b6586fbf80ba7eb1f576c132d76c",
+    "data/icons/hicolor/256x256/apps/org.gnome.teraconvert.png": "2569056e82849243a5acaac68abfd39587b547db90dde30de345ee7fb3b9a529",
+    "data/icons/hicolor/256x256/apps/quickview-nobg.png": "f730fb9d49d187760a2700de59430913be4925ca95882f3b6b6d413ac3473d56",
+    "data/icons/hicolor/256x256/apps/quickview.png": "134b7237182700e4b08a308dda0701ac9cd5b6586fbf80ba7eb1f576c132d76c",
+    "data/icons/hicolor/256x256/apps/teraconvert.png": "2569056e82849243a5acaac68abfd39587b547db90dde30de345ee7fb3b9a529",
+    "data/icons/hicolor/32x32/apps/org.gnome.NautilusPreviewer.png": "4c80ef16e959263bceb281dfbcbaa3c332ff8b9e64f22b8bb7e43329d0a82609",
+    "data/icons/hicolor/32x32/apps/org.gnome.teraconvert.png": "e12f7612e67856f8ab9e4d4be5f6969ed71cb9b2a70fd6b6911533f6d10520e1",
+    "data/icons/hicolor/32x32/apps/quickview.png": "4c80ef16e959263bceb281dfbcbaa3c332ff8b9e64f22b8bb7e43329d0a82609",
+    "data/icons/hicolor/32x32/apps/teraconvert.png": "e12f7612e67856f8ab9e4d4be5f6969ed71cb9b2a70fd6b6911533f6d10520e1",
+    "data/icons/hicolor/48x48/apps/org.gnome.NautilusPreviewer.png": "1b246039cb597d3613f1fb4974f673eb37b338ad9f70f32421f1e269e83c1c31",
+    "data/icons/hicolor/48x48/apps/org.gnome.teraconvert.png": "4c780a447c3311b54885909a47fec4fcf2bfb4d39f7478193df446577a0b755a",
+    "data/icons/hicolor/48x48/apps/quickview.png": "1b246039cb597d3613f1fb4974f673eb37b338ad9f70f32421f1e269e83c1c31",
+    "data/icons/hicolor/48x48/apps/teraconvert.png": "4c780a447c3311b54885909a47fec4fcf2bfb4d39f7478193df446577a0b755a",
+    "data/icons/hicolor/512x512/apps/org.gnome.NautilusPreviewer.png": "45ded9279c378fadb4fd467eaa4ae96160a6a622a6c49af7dbdaef9cae1d396d",
+    "data/icons/hicolor/512x512/apps/org.gnome.teraconvert.png": "164842bcaedfb0ea586906a9b774a4c3b81ede2af9c295a64a125f3285a2c2c8",
+    "data/icons/hicolor/512x512/apps/quickview.png": "45ded9279c378fadb4fd467eaa4ae96160a6a622a6c49af7dbdaef9cae1d396d",
+    "data/icons/hicolor/512x512/apps/teraconvert.png": "164842bcaedfb0ea586906a9b774a4c3b81ede2af9c295a64a125f3285a2c2c8",
+    "data/icons/hicolor/64x64/apps/org.gnome.NautilusPreviewer.png": "16643842ac5981b1c0d6a22d701db2e47db65ff38428ec24afc06f2ccaed154e",
+    "data/icons/hicolor/64x64/apps/org.gnome.teraconvert.png": "f113872dce68df1ff52bcffac144b7f0ab71e27e68c9900eb8a0f69463223aa0",
+    "data/icons/hicolor/64x64/apps/quickview.png": "16643842ac5981b1c0d6a22d701db2e47db65ff38428ec24afc06f2ccaed154e",
+    "data/icons/hicolor/64x64/apps/teraconvert.png": "f113872dce68df1ff52bcffac144b7f0ab71e27e68c9900eb8a0f69463223aa0",
+    "data/icons/hicolor/scalable/apps/org.gnome.NautilusPreviewer.png": "45ded9279c378fadb4fd467eaa4ae96160a6a622a6c49af7dbdaef9cae1d396d",
+    "data/icons/hicolor/scalable/apps/org.gnome.teraconvert.png": "164842bcaedfb0ea586906a9b774a4c3b81ede2af9c295a64a125f3285a2c2c8",
+    "data/icons/hicolor/scalable/apps/org.gnome.teraconvert.svg": "cd59fd1175050576b17fb51f81e991363685f479939e951036e2556ec55da8a1",
+    "data/icons/hicolor/scalable/apps/quickview.png": "45ded9279c378fadb4fd467eaa4ae96160a6a622a6c49af7dbdaef9cae1d396d",
+    "data/icons/hicolor/scalable/apps/teraconvert.png": "164842bcaedfb0ea586906a9b774a4c3b81ede2af9c295a64a125f3285a2c2c8",
+    "data/icons/hicolor/scalable/apps/teraconvert.svg": "cd59fd1175050576b17fb51f81e991363685f479939e951036e2556ec55da8a1",
+    "data/menu/nautilus-files-view-context-menus-vi.ui": "396f7906d738b03362991db233b52e93c929f2ea1a7c9c704f20d2c2243c7773",
+    "data/menu/nautilus-files-view-context-menus.ui": "3c1379e50162605110034fc4a940fc1d0b885e6727cde5d04e3a45444448a37d",
+    "data/metainfo/org.gnome.teraconvert.metainfo.xml": "99f2c15756f54485cb5ab4663c169d544b191bc99bf917aa6c19bd0f1a19a58d",
+    "data/profiles/README.md": "68c48cc6582bbbe45606ac21275826c479a249ae2d4c8c1cd1092ccd2b483cb8",
+    "data/profiles/document.conf": "cb63074b15a81f4a429e2a8057cef86000e1ac05c222d312c8a1f7b4ccd85f25",
+    "data/profiles/image.conf": "76f97cd334ea5ace37d7886040b90ad2951f7fc7def531436f89f8b5137718b8",
+    "data/profiles/pdf.conf": "6352302e42f61e2f63ecdf34a6300ffd90ef01dd9a1f0f4458a125669c95155d",
+    "data/profiles/video.conf": "44dd7ac5d2f8ca9ecd86ba83c2df72d0bc09a2b88f57f04971526830f195c860",
+    "data/systemd/teraconvert.service": "f3fecfe27bb7e18b5263894d382aff730c9d76d59d75561e4ae2047b1e495b70",
+    "data/systemd/teraconvert.socket": "133a4f6f06cd7ba31ec4eec95537fe24b1f82244d03c240f2a05ed3e63ab296a",
+    "data/teraconvert-en.gresource.xml": "6f8baafe1fba4a81f47e0a50f10a81c56cad3f9455c5d89e2bbc718773e6c3d8",
+    "data/teraconvert-vi.gresource.xml": "83a5e2646b441128b79e67222af2db68851bb6ddb92980288c8b53c82c2dab22",
+    "meson.build": "84392946ff0209965d2b36b04a70f72606070e9e14678e993690c29ff7b18f0d",
+    "meson_options.txt": "75679228f07e7f3f541715a1160af12f0e2607767e3b98a7b948618e7aa0e907",
+    "build-deb.sh": "4ec5207eb26ad5bcdda1101f4825df63871bf4092cbc743e980af4af09cbecf1"
+  },
+  "normal": {
+    "build_directory": "/home/panh/Projects/teraconvert-c/build",
+    "counts": {
+      "OK": 15,
+      "SKIP": 1
+    },
+    "tests": [
+      {
+        "name": "regression - teraconvert-c:MP4 Padding Safety Regression",
+        "result": "OK",
+        "duration_seconds": 0.012017011642456055,
+        "tap_subtests_reported": 16,
+        "skips": []
+      },
+      {
+        "name": "unit - teraconvert-c:IPC Protocol Tests",
+        "result": "OK",
+        "duration_seconds": 0.022922039031982422,
+        "tap_subtests_reported": 11,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+        "result": "OK",
+        "duration_seconds": 0.14470505714416504,
+        "tap_subtests_reported": 12,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Resource Admission Regression",
+        "result": "OK",
+        "duration_seconds": 0.2576158046722412,
+        "tap_subtests_reported": 13,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Owned Temp Recovery Regression",
+        "result": "OK",
+        "duration_seconds": 0.004783153533935547,
+        "tap_subtests_reported": 2,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Media Probe Regression",
+        "result": "OK",
+        "duration_seconds": 0.36444687843322754,
+        "tap_subtests_reported": 11,
+        "skips": []
+      },
+      {
+        "name": "teraconvert-c:Worker Pool & Safety Guard Tests",
+        "result": "OK",
+        "duration_seconds": 0.3662285804748535,
+        "tap_subtests_reported": 0,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Office Worker Regression",
+        "result": "OK",
+        "duration_seconds": 0.49111366271972656,
+        "tap_subtests_reported": 7,
+        "skips": []
+      },
+      {
+        "name": "integration - teraconvert-c:Production IPC Integration",
+        "result": "SKIP",
+        "duration_seconds": 0.058684349060058594,
+        "tap_subtests_reported": 0,
+        "skips": [
+          "SKIP: production AF_UNIX/SO_PEERCRED is unavailable in this environment: [Errno 1] Operation not permitted"
+        ]
+      },
+      {
+        "name": "regression - teraconvert-c:Validated Remux Regression",
+        "result": "OK",
+        "duration_seconds": 0.22150301933288574,
+        "tap_subtests_reported": 2,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Lossless Audio Regression",
+        "result": "OK",
+        "duration_seconds": 0.7059652805328369,
+        "tap_subtests_reported": 3,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Lossless Image Regression",
+        "result": "OK",
+        "duration_seconds": 0.9887528419494629,
+        "tap_subtests_reported": 4,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Lossless PDF Regression",
+        "result": "OK",
+        "duration_seconds": 1.0265161991119385,
+        "tap_subtests_reported": 4,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Async Dispatcher Regression",
+        "result": "OK",
+        "duration_seconds": 1.2747743129730225,
+        "tap_subtests_reported": 8,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Process Runner Regression",
+        "result": "OK",
+        "duration_seconds": 1.410555124282837,
+        "tap_subtests_reported": 12,
+        "skips": []
+      },
+      {
+        "name": "engines - teraconvert-c:End-to-End Engine Tests",
+        "result": "OK",
+        "duration_seconds": 2.352949857711792,
+        "tap_subtests_reported": 6,
+        "skips": [
+          "ok 2 /engines/ai-opt-in # SKIP Opt-in AI test: set TC_TEST_AI=1 with a preinstalled model/runtime"
+        ]
+      }
+    ]
+  },
+  "asan_ubsan": {
+    "build_directory": "/tmp/tc-roadmap-asan",
+    "counts": {
+      "OK": 15,
+      "SKIP": 1
+    },
+    "tests": [
+      {
+        "name": "regression - teraconvert-c:MP4 Padding Safety Regression",
+        "result": "OK",
+        "duration_seconds": 0.021634578704833984,
+        "tap_subtests_reported": 16,
+        "skips": []
+      },
+      {
+        "name": "unit - teraconvert-c:IPC Protocol Tests",
+        "result": "OK",
+        "duration_seconds": 0.038567304611206055,
+        "tap_subtests_reported": 11,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+        "result": "OK",
+        "duration_seconds": 0.10872864723205566,
+        "tap_subtests_reported": 12,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Resource Admission Regression",
+        "result": "OK",
+        "duration_seconds": 0.29680323600769043,
+        "tap_subtests_reported": 13,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Owned Temp Recovery Regression",
+        "result": "OK",
+        "duration_seconds": 0.014796972274780273,
+        "tap_subtests_reported": 2,
+        "skips": []
+      },
+      {
+        "name": "teraconvert-c:Worker Pool & Safety Guard Tests",
+        "result": "OK",
+        "duration_seconds": 0.40984487533569336,
+        "tap_subtests_reported": 0,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Media Probe Regression",
+        "result": "OK",
+        "duration_seconds": 0.5600526332855225,
+        "tap_subtests_reported": 11,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Office Worker Regression",
+        "result": "OK",
+        "duration_seconds": 0.6158237457275391,
+        "tap_subtests_reported": 7,
+        "skips": []
+      },
+      {
+        "name": "integration - teraconvert-c:Production IPC Integration",
+        "result": "SKIP",
+        "duration_seconds": 0.06732296943664551,
+        "tap_subtests_reported": 0,
+        "skips": [
+          "SKIP: production AF_UNIX/SO_PEERCRED is unavailable in this environment: [Errno 1] Operation not permitted"
+        ]
+      },
+      {
+        "name": "regression - teraconvert-c:Validated Remux Regression",
+        "result": "OK",
+        "duration_seconds": 0.302457332611084,
+        "tap_subtests_reported": 2,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Process Runner Regression",
+        "result": "OK",
+        "duration_seconds": 1.2823505401611328,
+        "tap_subtests_reported": 12,
+        "skips": [
+          "ok 12 /runner/live-process-tree-rss-budget # SKIP Sanitizer runtime reserves a large virtual address range; RSS/AS child-cap test runs in normal build"
+        ]
+      },
+      {
+        "name": "regression - teraconvert-c:Lossless Audio Regression",
+        "result": "OK",
+        "duration_seconds": 0.87703537940979,
+        "tap_subtests_reported": 3,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Async Dispatcher Regression",
+        "result": "OK",
+        "duration_seconds": 1.2842485904693604,
+        "tap_subtests_reported": 8,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Lossless Image Regression",
+        "result": "OK",
+        "duration_seconds": 1.2316069602966309,
+        "tap_subtests_reported": 4,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Lossless PDF Regression",
+        "result": "OK",
+        "duration_seconds": 1.1639025211334229,
+        "tap_subtests_reported": 4,
+        "skips": []
+      },
+      {
+        "name": "engines - teraconvert-c:End-to-End Engine Tests",
+        "result": "OK",
+        "duration_seconds": 2.6341159343719482,
+        "tap_subtests_reported": 6,
+        "skips": [
+          "ok 2 /engines/ai-opt-in # SKIP Opt-in AI test: set TC_TEST_AI=1 with a preinstalled model/runtime"
+        ]
+      }
+    ],
+    "options": {
+      "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1"
+    },
+    "limitations": [
+      "LeakSanitizer disabled because ptrace is restricted",
+      "External system libraries/helpers are not rebuilt with sanitizer",
+      "Runner RSS/AS child-cap subtest skipped under ASan; normal build executed it"
+    ]
+  },
+  "tsan": {
+    "build_directory": "/tmp/tc-roadmap-tsan",
+    "counts": {
+      "OK": 2
+    },
+    "tests": [
+      {
+        "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+        "result": "OK",
+        "duration_seconds": 0.12311911582946777,
+        "tap_subtests_reported": 12,
+        "skips": []
+      },
+      {
+        "name": "regression - teraconvert-c:Resource Admission Regression",
+        "result": "OK",
+        "duration_seconds": 0.2851254940032959,
+        "tap_subtests_reported": 13,
+        "skips": []
+      }
+    ],
+    "options": {
+      "TSAN_OPTIONS": "halt_on_error=1"
+    },
+    "suppressions": false,
+    "scope": "Owned worker lifecycle and resource-governor regression, not every system library/backend"
+  },
+  "matrix": {
+    "source": "/home/panh/Projects/teraconvert-c",
+    "configurations": [
+      {
+        "case": "cli-only",
+        "options": {
+          "client": false,
+          "daemon": false,
+          "ui": "disabled",
+          "engine_vips": "disabled",
+          "engine_ffmpeg": "disabled",
+          "engine_poppler": "disabled",
+          "engine_office": "disabled",
+          "engine_ai": "disabled",
+          "engine_safe_images": "disabled"
+        },
+        "commands": [
+          [
+            "meson",
+            "setup",
+            "/tmp/tc-roadmap-matrix-release/cli-only",
+            "/home/panh/Projects/teraconvert-c",
+            "--buildtype=debugoptimized",
+            "-Dclient=false",
+            "-Ddaemon=false",
+            "-Dui=disabled",
+            "-Dengine_vips=disabled",
+            "-Dengine_ffmpeg=disabled",
+            "-Dengine_poppler=disabled",
+            "-Dengine_office=disabled",
+            "-Dengine_ai=disabled",
+            "-Dengine_safe_images=disabled"
+          ],
+          [
+            "meson",
+            "compile",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/cli-only",
+            "-j",
+            "4"
+          ],
+          [
+            "meson",
+            "test",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/cli-only",
+            "--print-errorlogs"
+          ]
+        ],
+        "status": "passed",
+        "tests": [
+          {
+            "name": "regression - teraconvert-c:MP4 Padding Safety Regression",
+            "result": "OK"
+          },
+          {
+            "name": "unit - teraconvert-c:IPC Protocol Tests",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Owned Temp Recovery Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Resource Admission Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Async Dispatcher Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Process Runner Regression",
+            "result": "OK"
+          }
+        ]
+      },
+      {
+        "case": "daemon-core",
+        "options": {
+          "client": false,
+          "daemon": true,
+          "ui": "disabled",
+          "engine_vips": "disabled",
+          "engine_ffmpeg": "disabled",
+          "engine_poppler": "disabled",
+          "engine_office": "disabled",
+          "engine_ai": "disabled",
+          "engine_safe_images": "disabled"
+        },
+        "commands": [
+          [
+            "meson",
+            "setup",
+            "/tmp/tc-roadmap-matrix-release/daemon-core",
+            "/home/panh/Projects/teraconvert-c",
+            "--buildtype=debugoptimized",
+            "-Dclient=false",
+            "-Ddaemon=true",
+            "-Dui=disabled",
+            "-Dengine_vips=disabled",
+            "-Dengine_ffmpeg=disabled",
+            "-Dengine_poppler=disabled",
+            "-Dengine_office=disabled",
+            "-Dengine_ai=disabled",
+            "-Dengine_safe_images=disabled"
+          ],
+          [
+            "meson",
+            "compile",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/daemon-core",
+            "-j",
+            "4"
+          ],
+          [
+            "meson",
+            "test",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/daemon-core",
+            "--print-errorlogs"
+          ]
+        ],
+        "status": "passed",
+        "tests": [
+          {
+            "name": "regression - teraconvert-c:MP4 Padding Safety Regression",
+            "result": "OK"
+          },
+          {
+            "name": "unit - teraconvert-c:IPC Protocol Tests",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Owned Temp Recovery Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Resource Admission Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Async Dispatcher Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Process Runner Regression",
+            "result": "OK"
+          }
+        ]
+      },
+      {
+        "case": "client-only",
+        "options": {
+          "client": true,
+          "daemon": false,
+          "ui": "disabled",
+          "engine_vips": "disabled",
+          "engine_ffmpeg": "disabled",
+          "engine_poppler": "disabled",
+          "engine_office": "disabled",
+          "engine_ai": "disabled",
+          "engine_safe_images": "disabled"
+        },
+        "commands": [
+          [
+            "meson",
+            "setup",
+            "/tmp/tc-roadmap-matrix-release/client-only",
+            "/home/panh/Projects/teraconvert-c",
+            "--buildtype=debugoptimized",
+            "-Dclient=true",
+            "-Ddaemon=false",
+            "-Dui=disabled",
+            "-Dengine_vips=disabled",
+            "-Dengine_ffmpeg=disabled",
+            "-Dengine_poppler=disabled",
+            "-Dengine_office=disabled",
+            "-Dengine_ai=disabled",
+            "-Dengine_safe_images=disabled"
+          ],
+          [
+            "meson",
+            "compile",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/client-only",
+            "-j",
+            "4"
+          ],
+          [
+            "meson",
+            "test",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/client-only",
+            "--print-errorlogs"
+          ]
+        ],
+        "status": "passed",
+        "tests": [
+          {
+            "name": "regression - teraconvert-c:MP4 Padding Safety Regression",
+            "result": "OK"
+          },
+          {
+            "name": "unit - teraconvert-c:IPC Protocol Tests",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Owned Temp Recovery Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Resource Admission Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Async Dispatcher Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Process Runner Regression",
+            "result": "OK"
+          }
+        ]
+      },
+      {
+        "case": "ui-only",
+        "options": {
+          "client": false,
+          "daemon": false,
+          "ui": "enabled",
+          "engine_vips": "disabled",
+          "engine_ffmpeg": "disabled",
+          "engine_poppler": "disabled",
+          "engine_office": "disabled",
+          "engine_ai": "disabled",
+          "engine_safe_images": "disabled"
+        },
+        "commands": [
+          [
+            "meson",
+            "setup",
+            "/tmp/tc-roadmap-matrix-release/ui-only",
+            "/home/panh/Projects/teraconvert-c",
+            "--buildtype=debugoptimized",
+            "-Dclient=false",
+            "-Ddaemon=false",
+            "-Dui=enabled",
+            "-Dengine_vips=disabled",
+            "-Dengine_ffmpeg=disabled",
+            "-Dengine_poppler=disabled",
+            "-Dengine_office=disabled",
+            "-Dengine_ai=disabled",
+            "-Dengine_safe_images=disabled"
+          ],
+          [
+            "meson",
+            "compile",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/ui-only",
+            "-j",
+            "4"
+          ],
+          [
+            "meson",
+            "test",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/ui-only",
+            "--print-errorlogs"
+          ]
+        ],
+        "status": "passed",
+        "tests": [
+          {
+            "name": "regression - teraconvert-c:MP4 Padding Safety Regression",
+            "result": "OK"
+          },
+          {
+            "name": "unit - teraconvert-c:IPC Protocol Tests",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Owned Temp Recovery Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Resource Admission Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Async Dispatcher Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Process Runner Regression",
+            "result": "OK"
+          }
+        ]
+      },
+      {
+        "case": "safe-images-only",
+        "options": {
+          "client": false,
+          "daemon": true,
+          "ui": "disabled",
+          "engine_vips": "disabled",
+          "engine_ffmpeg": "disabled",
+          "engine_poppler": "disabled",
+          "engine_office": "disabled",
+          "engine_ai": "disabled",
+          "engine_safe_images": "enabled"
+        },
+        "commands": [
+          [
+            "meson",
+            "setup",
+            "/tmp/tc-roadmap-matrix-release/safe-images-only",
+            "/home/panh/Projects/teraconvert-c",
+            "--buildtype=debugoptimized",
+            "-Dclient=false",
+            "-Ddaemon=true",
+            "-Dui=disabled",
+            "-Dengine_vips=disabled",
+            "-Dengine_ffmpeg=disabled",
+            "-Dengine_poppler=disabled",
+            "-Dengine_office=disabled",
+            "-Dengine_ai=disabled",
+            "-Dengine_safe_images=enabled"
+          ],
+          [
+            "meson",
+            "compile",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/safe-images-only",
+            "-j",
+            "4"
+          ],
+          [
+            "meson",
+            "test",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/safe-images-only",
+            "--print-errorlogs"
+          ]
+        ],
+        "status": "passed",
+        "tests": [
+          {
+            "name": "regression - teraconvert-c:MP4 Padding Safety Regression",
+            "result": "OK"
+          },
+          {
+            "name": "unit - teraconvert-c:IPC Protocol Tests",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Owned Temp Recovery Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Resource Admission Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Lossless Image Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Async Dispatcher Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Process Runner Regression",
+            "result": "OK"
+          }
+        ]
+      },
+      {
+        "case": "without-ffmpeg",
+        "options": {
+          "client": false,
+          "daemon": true,
+          "ui": "disabled",
+          "engine_vips": "enabled",
+          "engine_ffmpeg": "disabled",
+          "engine_poppler": "enabled",
+          "engine_office": "enabled",
+          "engine_ai": "disabled",
+          "engine_safe_images": "enabled"
+        },
+        "commands": [
+          [
+            "meson",
+            "setup",
+            "/tmp/tc-roadmap-matrix-release/without-ffmpeg",
+            "/home/panh/Projects/teraconvert-c",
+            "--buildtype=debugoptimized",
+            "-Dclient=false",
+            "-Ddaemon=true",
+            "-Dui=disabled",
+            "-Dengine_vips=enabled",
+            "-Dengine_ffmpeg=disabled",
+            "-Dengine_poppler=enabled",
+            "-Dengine_office=enabled",
+            "-Dengine_ai=disabled",
+            "-Dengine_safe_images=enabled"
+          ],
+          [
+            "meson",
+            "compile",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/without-ffmpeg",
+            "-j",
+            "4"
+          ],
+          [
+            "meson",
+            "test",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/without-ffmpeg",
+            "--print-errorlogs"
+          ]
+        ],
+        "status": "passed",
+        "tests": [
+          {
+            "name": "regression - teraconvert-c:MP4 Padding Safety Regression",
+            "result": "OK"
+          },
+          {
+            "name": "unit - teraconvert-c:IPC Protocol Tests",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Owned Temp Recovery Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Resource Admission Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Office Worker Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Lossless Image Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Lossless PDF Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Async Dispatcher Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Process Runner Regression",
+            "result": "OK"
+          }
+        ]
+      },
+      {
+        "case": "without-office",
+        "options": {
+          "client": false,
+          "daemon": true,
+          "ui": "disabled",
+          "engine_vips": "enabled",
+          "engine_ffmpeg": "enabled",
+          "engine_poppler": "enabled",
+          "engine_office": "disabled",
+          "engine_ai": "disabled",
+          "engine_safe_images": "enabled"
+        },
+        "commands": [
+          [
+            "meson",
+            "setup",
+            "/tmp/tc-roadmap-matrix-release/without-office",
+            "/home/panh/Projects/teraconvert-c",
+            "--buildtype=debugoptimized",
+            "-Dclient=false",
+            "-Ddaemon=true",
+            "-Dui=disabled",
+            "-Dengine_vips=enabled",
+            "-Dengine_ffmpeg=enabled",
+            "-Dengine_poppler=enabled",
+            "-Dengine_office=disabled",
+            "-Dengine_ai=disabled",
+            "-Dengine_safe_images=enabled"
+          ],
+          [
+            "meson",
+            "compile",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/without-office",
+            "-j",
+            "4"
+          ],
+          [
+            "meson",
+            "test",
+            "-C",
+            "/tmp/tc-roadmap-matrix-release/without-office",
+            "--print-errorlogs"
+          ]
+        ],
+        "status": "passed",
+        "tests": [
+          {
+            "name": "regression - teraconvert-c:MP4 Padding Safety Regression",
+            "result": "OK"
+          },
+          {
+            "name": "unit - teraconvert-c:IPC Protocol Tests",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Owned Temp Recovery Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Worker Lifetime and Output Safety",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Resource Admission Regression",
+            "result": "OK"
+          },
+          {
+            "name": "teraconvert-c:Worker Pool & Safety Guard Tests",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Media Probe Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Validated Remux Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Lossless Audio Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Lossless Image Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Lossless PDF Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Async Dispatcher Regression",
+            "result": "OK"
+          },
+          {
+            "name": "regression - teraconvert-c:Process Runner Regression",
+            "result": "OK"
+          }
+        ]
+      }
+    ]
+  },
+  "package_review": {
+    "new_package": "/home/panh/Projects/teraconvert-c/packages/teraconvert-c_2.1.0+test.20261023.1_amd64.deb",
+    "old_package": "/home/panh/Projects/teraconvert-c/packages/teraconvert-c_2.0.0+test.20261023.2_amd64.deb",
+    "checks": [
+      {
+        "package": "new",
+        "sha256": "808abbb5cb1bbc1dbf62246ba0d8b23016f207d57981d9ccc4fd6fd19c73b45a",
+        "md5sums": "passed",
+        "scripts": [
+          "postinst"
+        ],
+        "elf_dependencies": "resolved on build host",
+        "elf_binaries": [
+          "usr/bin/teraconvert-ui",
+          "usr/bin/teraconvert-daemon",
+          "usr/bin/teraconvert-cli",
+          "usr/lib/x86_64-linux-gnu/nautilus/extensions-4/libnautilus-teraconvert.so"
+        ],
+        "payload_entries": 87,
+        "apt_simulation_exit": 0
+      },
+      {
+        "package": "old",
+        "sha256": "2245d2950c50468fcdaabd768306022bf31d66864bfa23e0ad12a86ac7b4cf27",
+        "md5sums": "passed",
+        "scripts": [
+          "postinst"
+        ],
+        "elf_dependencies": "resolved on build host",
+        "elf_binaries": [
+          "usr/bin/teraconvert-ui",
+          "usr/bin/teraconvert-daemon",
+          "usr/lib/x86_64-linux-gnu/nautilus/extensions-4/libnautilus-teraconvert.so"
+        ],
+        "payload_entries": 82,
+        "apt_simulation_exit": 0
+      }
+    ],
+    "staging": {
+      "upgrade_payload_overlay": "passed",
+      "downgrade_payload_overlay": "passed",
+      "scope": "private payload extraction/overlay, hashes and modes; no apt/dpkg transactions or maintainer-script execution",
+      "added_paths": [
+        "usr/bin/teraconvert-cli",
+        "usr/bin/teraconvert-register-model",
+        "usr/libexec/teraconvert/teraconvert-pdf-safe"
+      ],
+      "removed_paths": [],
+      "actual_install": "not performed; system writes and user bus unavailable"
+    },
+    "final_payload_matches_built_components": true,
+    "appstream_validate_no_net": "passed",
+    "desktop_file_validate": "passed"
+  },
+  "installed_version_at_check": "2.0.0+test.20261023.2",
+  "new_package_installed": false,
+  "research_pilot": "quality-harness-pilot-2026-10-23.json",
+  "corpus_registered_media_count": 0,
+  "ai_registration_checks": [
+    "local bounded fixture checksum registration passed",
+    "wrong checksum left existing model/receipt unchanged",
+    "no-clobber without explicit replace passed"
+  ],
+  "ai_inference": "skipped; no compatible real model registered for this run",
+  "environment_limits": [
+    "Production filesystem AF_UNIX bind returns EPERM; real peer-credential integration skipped",
+    "User session D-Bus/systemd and system install unavailable from sandbox",
+    "Corpus download DNS lookup failed; no real clips downloaded",
+    "No actual desktop A/B review, latency/RSS workload calibration or install/downgrade transaction"
+  ],
+  "worker_stress": {
+    "worker_suite_repetitions": 30,
+    "result": "passed",
+    "wall_seconds": 2.166358433998539,
+    "note": "Includes concurrent completions, capacity reclamation, no-clobber, target cancellation, source changes and late listeners; not a desktop load benchmark"
+  }
+}

@@ -1,0 +1,10 @@
+option('client', type: 'boolean', value: true, description: 'Build Nautilus C Extension')
+option('daemon', type: 'boolean', value: true, description: 'Build Headless Conversion Daemon')
+option('ui', type: 'feature', value: 'auto', description: 'Build GTK4/Libadwaita UI helper')
+option('engine_vips', type: 'feature', value: 'auto', description: 'Enable libvips high-speed image engine')
+option('engine_ffmpeg', type: 'feature', value: 'auto', description: 'Enable FFmpeg audio/video engine')
+option('engine_poppler', type: 'feature', value: 'auto', description: 'Enable Poppler PDF engine')
+option('engine_ai', type: 'feature', value: 'auto', description: 'Enable AI background removal engine')
+option('engine_office', type: 'feature', value: 'auto', description: 'Enable validated OOXML/ODF ZIP optimization with libarchive')
+
+option('engine_safe_images', type: 'feature', value: 'auto', description: 'Enable coefficient-preserving JPEG and byte-preserving PNG optimization')

@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Name=TeraConvert
+GenericName=File Converter & Quick Preview
+GenericName[vi]=Chuyển đổi tệp & Xem nhanh
+Comment=Native offline file converter & Space-key Quick Preview for Nautilus
+Comment[vi]=Công cụ chuyển đổi định dạng và xem nhanh tệp tin cho Nautilus
+Icon=teraconvert
+Exec=nautilus
+Terminal=false
+NoDisplay=true
+Categories=GNOME;GTK;Utility;
+Keywords=converter;quicklook;preview;rembg;resize;sushi;nautilus;
+StartupNotify=true
+StartupWMClass=teraconvert
+X-GNOME-UsesNotifications=true

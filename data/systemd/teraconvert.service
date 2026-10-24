@@ -1,0 +1,22 @@
+[Unit]
+Description=TeraConvert C11 Headless Conversion Daemon
+Requires=teraconvert.socket
+After=teraconvert.socket
+StartLimitBurst=5
+StartLimitIntervalSec=10s
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/teraconvert-daemon
+StandardOutput=journal
+StandardError=journal
+Restart=on-failure
+RestartSec=1s
+TimeoutStopSec=10s
+KillMode=control-group
+
+# High throughput service limits
+MemoryMax=4000M
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.gnome.teraconvert</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>TeraConvert</name>
+  <summary>Local file conversion and validated compression for Nautilus</summary>
+  <summary xml:lang="vi">Chuyển đổi và tối ưu tệp tin có xác minh cho Nautilus</summary>
+  <developer id="com.gitlab.lephucanh2601"><name>Phuc Anh Le</name></developer>
+  <url type="homepage">https://lephucanh2601.gitlab.io/tera-converter</url>
+  <description>
+    <p>Convert files from GNOME Files using a native C11 extension, daemon and GTK interface. Some operations use external helpers and Python.</p>
+    <p xml:lang="vi">Chuyển đổi tệp từ GNOME Files bằng tiện ích C11, daemon và giao diện GTK. Một số tác vụ dùng chương trình phụ trợ và Python.</p>
+    <ul>
+      <li>Preserve supported PNG/JPEG image content, static PDF content, OOXML/ODF entry bytes and supported integer audio samples.</li>
+      <li>Remove trailing MP4/MOV padding or validate supported stream-copy remuxing. Unverified features are skipped.</li>
+      <li>Separate lossy video and PDF presets, with no fixed size or quality guarantee.</li>
+      <li>Batch results, per-batch cancellation and a JSON command-line client.</li>
+      <li>Optional local AI background removal requires a compatible model with a SHA-256 receipt and ONNX Runtime.</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">teraconvert.desktop</launchable>
+  <icon type="stock">teraconvert</icon>
+  <provides>
+    <binary>teraconvert-daemon</binary>
+    <binary>teraconvert-ui</binary>
+    <binary>teraconvert-cli</binary>
+    <binary>teraconvert-rembg</binary>
+  </provides>
+  <categories><category>Utility</category><category>Graphics</category><category>AudioVideo</category></categories>
+  <content_rating type="oars-1.1" />
+  <releases>
+    <release version="2.1.0" date="2026-10-23"><description><p>Add validated preservation modes, versioned batch IPC, owned temporary workspaces and research tools.</p></description></release>
+  </releases>
+</component>
